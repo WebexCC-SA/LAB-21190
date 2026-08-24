@@ -36,7 +36,8 @@ theme:
 extra:
   generator: false
   repo: "https://github.com/WebexCC-SA/LAB-21190.git"
-  site_event: test
+  site_event: WebexOne 2026
+  lab_workspace: "https://github.com/git-jzuke/wx1-lab21190.git"
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
@@ -89,18 +90,10 @@ nav:
   - Welcome: welcome.md
   - Lab:
       - Overview: overview.md
-      - Lab 1 - Getting Started: lab1_getting_started.md
+      - Getting Started: getting_started.md
+      - Module 0 — Lab Setup: module0_setup.md
+      - Module 1 — Users: module1_users.md
+      - Module 2 — Organizational Data: module2_org_data.md
+      - Module 3 — GraphQL Reports: module3_graphql.md
+      - Module 4 — Control Hub & Webex Calling: module4_webex_apis.md
       - Conclusion: conclusion.md
-  - Topologies: topologies.md
-  - How to use this guide:
-      - Setting up and using the tool:
-        - Initial Setup: howToUse/initialSetup.md
-        - Using the tool after the initial setup: howToUse/postInitial.md
-        - Publishing your changes: howToUse/syncChanges.md
-      - Useful Tools and Resources: howToUse/usefulTools.md
-      - Importing from Word (docx): howToUse/importingFromWord.md
-      - Styling and Advanced Features:
-        - Custom Features: howToUse/customFeatures.md
-        - Custom Admonitions: howToUse/admonition.md
-      - Looking for Inspiration: howToUse/previousEventLabs.md
-      - Before the Event: howToUse/beforeTheEvent.md
