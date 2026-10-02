@@ -2,7 +2,7 @@
 
 Welcome to **LAB-21190 — Building Custom Webex Contact Center Dashboards**.
 
-This guide walks you through connecting a pre-built dashboard to Webex Contact Center and Webex Platform APIs. Start with the [Overview](overview.md), then follow [Getting Started](getting_started.md) to launch the dashboard and complete the [Setup module](module0_setup.md).
+The lab environment is already set up. Start with the [Overview](overview.md), then complete [Module 0 — Lab Setup](module0_setup.md) to connect the dashboard to your organization.
 
 ## Ask a Question
 

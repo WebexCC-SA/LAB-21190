@@ -7,7 +7,26 @@ function loadem() {
             if (event.target.tagName == "W") { navigator.clipboard.writeText(event.target.parentNode.innerText) }
         })
     })
-} loadem()
+    openLinksInNewTab()
+}
+
+function openLinksInNewTab() {
+    document.querySelectorAll(".md-content a[href]").forEach((anchor) => {
+        const href = anchor.getAttribute("href") || ""
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) {
+            return
+        }
+        anchor.setAttribute("target", "_blank")
+        anchor.setAttribute("rel", "noopener noreferrer")
+    })
+}
+
+loadem()
+if (typeof document$ !== "undefined") {
+    document$.subscribe(function () {
+        loadem()
+    })
+}
 function setValues() {
     document.querySelector("#info").querySelectorAll("input").forEach((input) => { sessionStorage.setItem(input.name, input.value) });
     event.preventDefault()

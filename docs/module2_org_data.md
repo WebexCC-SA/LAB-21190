@@ -1,22 +1,8 @@
 # Module 2 — Organizational Data
 
-**Answers:** dashboard step forms (Module 2)  
-**Reference:** `modules/module2_org_data.py` (logic only — do not edit)  
-**Estimated time:** 25 minutes
-
 ## Objective
 
 Add organizational visibility to the dashboard: entry points (channels), queues, teams, auxiliary codes, global variables, and the ability to update a global variable value.
-
-## Developer Portal Reference
-
-- [Entry Points](https://developer.webex.com/webex-contact-center/docs/api/v1/entry-point)
-- [Dial Number](https://developer.webex.com/webex-contact-center/docs/api/v1/dial-number)
-- [Flow Orchestration](https://developer.webex.com/webex-contact-center/docs/api/guides/flow-orchestration)
-- [Contact Service Queues](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues)
-- [Teams](https://developer.webex.com/webex-contact-center/docs/api/v1/team)
-- [Auxiliary Codes](https://developer.webex.com/webex-contact-center/docs/api/v1/auxiliary-code)
-- [Global Variables](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables)
 
 ---
 
@@ -60,8 +46,8 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 
 **Goal:** Display all contact service queues with direction, channel type, routing mode, and status.
 
-1. Open the [Contact Service Queues API](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-contact-service-queues)
-2. Use the **v2 list** endpoint (`/v2/contact-service-queue`) — v1 and v3 list paths are deprecated
+1. Open the [List Contact Service Queues API](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-contact-service-queues)
+2. Use the **v2 list** endpoint — `/organization/{orgId}/v2/contact-service-queue` or `/{orgId}/v2/contact-service-queue`. **Do not use v3.** The v3 queue list is being removed; when you develop against WxCC APIs, copy the v2 Try It path.
 3. Inspect fields for contact direction, channel type, routing type, and active flag
 
 **Fill in:**
@@ -84,9 +70,9 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 
 **Goal:** Display all contact center teams with site, type, dialed number (when applicable), and status.
 
-1. Open the [Teams API](https://developer.webex.com/webex-contact-center/docs/api/v1/team)
+1. Open the [List Teams API](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-teams)
 2. Use the **v2 list teams** endpoint — it returns teams in a `data` array and includes `dialedNumber` for **capacity-based** teams
-3. Note fields for team name, site name, team type, team status, and dialed number
+3. Note fields for team name, site name, team type, and dialed number
 
 **Fill in:**
 
@@ -97,8 +83,6 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 | `TEAM_SITE_NAME_KEY` | Site name where the team is located |
 | `TEAM_TYPE_KEY` | Team type (`AGENT` or `CAPACITY`) |
 | `TEAM_DN_KEY` | Dialed number for capacity-based teams (`dialedNumber`) |
-| `TEAM_STATUS_KEY` | Team status (`teamStatus`, e.g. `IN_SERVICE`) |
-| `TEAM_RESPONSE_DATA_KEY` | Response wrapper key (`data`) |
 
 **Dashboard unlocks:** Teams table with Team Name, Site, Type, DN, and Status columns
 
@@ -111,7 +95,7 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 
 **Goal:** Display auxiliary (idle) codes used for agent state management.
 
-1. Open the [Auxiliary Codes API](https://developer.webex.com/webex-contact-center/docs/api/v1/auxiliary-code/list-auxiliary-codes)
+1. Open the [List Auxiliary Codes API](https://developer.webex.com/webex-contact-center/docs/api/v1/auxiliary-code/list-auxiliary-codes)
 2. Use the **v2 list** endpoint (`/v2/auxiliary-code`)
 3. Note fields for Work Type Code, Default Code, and Active flag
 
@@ -137,8 +121,8 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 !!! note "CAD Variables API"
     Global variables are exposed via the **CAD Variable** API (`v2/cad-variable`), not `/global-variable`. The configured default is in `defaultValue`, not `value`.
 
-1. Open the [Global Variables API reference](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables)
-2. Find the v2 list endpoint and inspect the response for name, default value, variable type, and status fields
+1. Open the [List Global Variables API](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables/list-global-variables)
+2. Inspect the response for name, default value, variable type, and status fields
 
 **Fill in:**
 
@@ -162,10 +146,9 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 !!! note "GET before PUT"
     The update API requires the **full variable object** in the PUT body. The dashboard performs a GET first, replaces `defaultValue`, then sends PUT.
 
-1. Open the [Global Variables API reference](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables)
-2. Find the **Get Global Variable by ID** and **Update Global Variable** operations
-3. Note the path pattern uses `cad-variable/{id}` (not the v2 list path)
-4. Confirm your token includes **`cjp:config_write`** scope
+1. Open the [Update Specific Global Variable by ID](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables/update-specific-global-variable-by-id) API
+2. Note the path pattern uses `cad-variable/{id}` (not the v2 list path)
+3. Confirm your token includes **`cjp:config_write`** scope
 
 **Fill in:**
 
@@ -176,19 +159,23 @@ Add organizational visibility to the dashboard: entry points (channels), queues,
 
 The dashboard uses built-in defaults for the variable Id and Default Value body field — you only need the endpoint and request method.
 
-**Dashboard unlocks:** Blue **Edit** buttons appear when you hover a global variable row and open an edit dialog. Boolean variables show a **true/false** dropdown. After save, the global variables table shows a loading state and refreshes without reloading all of Module 2.
+**Dashboard unlocks:** Blue **Edit** buttons appear when you hover a global variable row. The edit dialog includes an **i** button that explains the GET-then-PUT CadVariableDTO flow. The form shows the writable Update-by-ID fields for its `variableType` (string, integer, decimal, boolean, or date/time), plus description, desktop label, and the required flags (`active`, `reportable`, `agentViewable`, `agentEditable`). Name and type cannot be changed. After save, the table refreshes without reloading all of Module 2.
 
 !!! warning "Lab safety"
     Update a **test variable** you create for the lab. Avoid changing production or system-defined variables unless your instructor directs you to.
 
 ---
 
-## Verification
+## Developer Portal Reference
 
-- [ ] Entry points show name, DN, Webex Calling location, media region, flow, and status
-- [ ] Queues show contact direction, type, skills based routing, and status
-- [ ] Teams show name, site, type, DN (for capacity teams), and status
-- [ ] Auxiliary codes show name, code type, default, and status
-- [ ] Global variables show name, value, type, and status
-- [ ] Global variable update form successfully changes a test variable's value
-- [ ] Progress bar shows 6/6 steps for Module 2
+- [List Entry Points](https://developer.webex.com/webex-contact-center/docs/api/v1/entry-point/list-entry-points)
+- [List Dial Number Mappings](https://developer.webex.com/webex-contact-center/docs/api/v1/dial-number/list-dialed-number-mappings)
+- [Flow Orchestration](https://developer.webex.com/webex-contact-center/docs/api/guides/flow-orchestration)
+- [List Locations](https://developer.webex.com/calling/docs/api/v1/locations/list-locations)
+- [List Telephony Regions](https://developer.webex.com/webex-contact-center/docs/api/v1/global-telephony-region/list-telephony-regions)
+- [List Contact Service Queues](https://developer.webex.com/webex-contact-center/docs/api/v1/contact-service-queues/list-contact-service-queues)
+- [List Teams](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-teams)
+- [List Auxiliary Codes](https://developer.webex.com/webex-contact-center/docs/api/v1/auxiliary-code/list-auxiliary-codes)
+- [List Global Variables](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables/list-global-variables)
+- [Get Specific Global Variable by ID](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables/get-specific-global-variable-by-id)
+- [Update Specific Global Variable by ID](https://developer.webex.com/webex-contact-center/docs/api/v1/global-variables/update-specific-global-variable-by-id)

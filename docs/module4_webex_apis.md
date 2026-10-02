@@ -1,21 +1,8 @@
 # Module 4 — Webex Control Hub & Webex Calling APIs
 
-**Answers:** dashboard step forms (Module 4)  
-**Reference:** `modules/module4_webex_apis.py` (logic only — do not edit)  
-**Estimated time:** 20 minutes
-
 ## Objective
 
 Extend the dashboard beyond Contact Center by integrating Webex Platform APIs for people, calling locations, and PSTN/carrier/trunk configuration.
-
-## Developer Portal Reference
-
-- [List People](https://developer.webex.com/docs/api/v1/people/list-people)
-- [List Roles](https://developer.webex.com/docs/api/v1/roles/list-roles)
-- [List Licenses](https://developer.webex.com/docs/api/v1/licenses/list-licenses)
-- [List Locations](https://developer.webex.com/calling/docs/api/v1/locations/list-locations)
-- [Get Phone Numbers](https://developer.webex.com/calling/docs/api/v1/numbers/get-phone-numbers-for-an-organization-with-given-criteria)
-- [Get PSTN Connection](https://developer.webex.com/calling/docs/api/v1/pstn/retrieve-pstn-connection-for-a-location)
 
 ---
 
@@ -27,18 +14,18 @@ Each part in the dashboard links directly to the matching Developer Portal page.
 
 ### Part A — List People
 
-1. Open [List People](https://developer.webex.com/docs/api/v1/people/list-people)
+1. Open the [List People API](https://developer.webex.com/docs/api/v1/people/list-people)
 2. This uses the Webex Platform API base URL (`https://webexapis.com/v1`), not the WxCC org API
 3. Copy the endpoint path and field names for email, display name, status, roles, and licenses
 
 ### Part B — List Roles
 
-1. Open [List Roles](https://developer.webex.com/docs/api/v1/roles/list-roles)
+1. Open the [List Roles API](https://developer.webex.com/docs/api/v1/roles/list-roles)
 2. Copy the endpoint path — role id/name keys are standard and handled by the lab
 
 ### Part C — List Licenses
 
-1. Open [List Licenses](https://developer.webex.com/docs/api/v1/licenses/list-licenses)
+1. Open the [List Licenses API](https://developer.webex.com/docs/api/v1/licenses/list-licenses)
 2. Copy the endpoint path
 
 **Fill in:**
@@ -64,12 +51,12 @@ Each part in the dashboard links directly to the matching Developer Portal page.
 
 ### Part A — List Locations
 
-1. Open [List Locations](https://developer.webex.com/calling/docs/api/v1/locations/list-locations)
+1. Open the [List Locations API](https://developer.webex.com/calling/docs/api/v1/locations/list-locations)
 2. Copy name, id, and the nested **address** object field name
 
 ### Part B — List Phone Numbers
 
-1. Open [Get Phone Numbers](https://developer.webex.com/calling/docs/api/v1/numbers/get-phone-numbers-for-an-organization-with-given-criteria)
+1. Open the [Get Phone Numbers API](https://developer.webex.com/calling/docs/api/v1/numbers/get-phone-numbers-for-an-organization-with-given-criteria)
 2. Copy the endpoint path and phone number field to count **provisioned numbers** per location
 
 **Fill in:**
@@ -91,8 +78,8 @@ Each part in the dashboard links directly to the matching Developer Portal page.
 
 **Goal:** Show PSTN connection and carrier details for **telephony numbers assigned to Module 2 entry points** (via dial-number mappings).
 
-1. Complete Module 2 Step 2.1 so entry point DNs are available
-2. Open [Retrieve PSTN Connection](https://developer.webex.com/calling/docs/api/v1/pstn/retrieve-pstn-connection-for-a-location)
+1. This module requires Module 2 Step 2.1 to be complete so entry point DNs are available
+2. Open the [Retrieve PSTN Connection API](https://developer.webex.com/calling/docs/api/v1/pstn/retrieve-pstn-connection-for-a-location)
 3. Copy the endpoint path (with a location id placeholder)
 4. Phone numbers from step 4.2 are reused automatically
 
@@ -109,23 +96,11 @@ Each part in the dashboard links directly to the matching Developer Portal page.
 
 ---
 
-## Verification
+## Developer Portal Reference
 
-- [ ] People table shows display name, role name, license names, and status
-- [ ] Locations table shows country, provisioned numbers, and address
-- [ ] PSTN table shows entry point numbers with location, connection/carrier, and country
-- [ ] Progress bar shows 3/3 steps for Module 4
-- [ ] Overall lab progress shows 100%
-
-## Congratulations!
-
-You have built a fully functional custom Webex Contact Center dashboard that integrates:
-
-- User and organizational configuration APIs
-- GraphQL historical and real-time reporting
-- Webex Control Hub and Webex Calling visibility
-
-Consider extending the dashboard with:
-
-- Alerting when queue wait times exceed thresholds
-- Webhook or notification API integration for faster event-driven updates (this lab uses polling instead)
+- [List People](https://developer.webex.com/docs/api/v1/people/list-people)
+- [List Roles](https://developer.webex.com/docs/api/v1/roles/list-roles)
+- [List Licenses](https://developer.webex.com/docs/api/v1/licenses/list-licenses)
+- [List Locations](https://developer.webex.com/calling/docs/api/v1/locations/list-locations)
+- [Get Phone Numbers](https://developer.webex.com/calling/docs/api/v1/numbers/get-phone-numbers-for-an-organization-with-given-criteria)
+- [Retrieve PSTN Connection](https://developer.webex.com/calling/docs/api/v1/pstn/retrieve-pstn-connection-for-a-location)

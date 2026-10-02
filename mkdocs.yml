@@ -38,6 +38,7 @@ extra:
   repo: "https://github.com/WebexCC-SA/LAB-21190.git"
   site_event: WebexOne 2026
   lab_workspace: "https://github.com/git-jzuke/wx1-lab21190.git"
+  standalone_dashboard: "https://github.com/placeholder"
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
@@ -90,10 +91,10 @@ nav:
   - Welcome: welcome.md
   - Lab:
       - Overview: overview.md
-      - Getting Started: getting_started.md
       - Module 0 — Lab Setup: module0_setup.md
       - Module 1 — Users: module1_users.md
       - Module 2 — Organizational Data: module2_org_data.md
       - Module 3 — GraphQL Reports: module3_graphql.md
       - Module 4 — Control Hub & Webex Calling: module4_webex_apis.md
+      - Module 5 — Full Dashboard: module5_dashboard.md
       - Conclusion: conclusion.md
