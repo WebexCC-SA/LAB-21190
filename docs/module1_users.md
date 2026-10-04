@@ -2,45 +2,29 @@
 
 ## Objective
 
-Build the Users panel of the dashboard by progressively adding user data — from basic name/email through profiles, teams, and contact channel types.
+Build the Users panel of the dashboard by progressively adding user data — from basic name/email through profiles, channel types, skills, and teams.
 
-Each step uses **list-all** APIs (paste the path exactly as shown in the Developer Portal Try It bar, e.g. `/organization/<org-id>/v2/team`).
+Each step uses **list-all** APIs. Copy the **endpoint** and **keys** from the JSON response into the lab.
 
 ---
 
-## Step 1.1 — List All Users
+## Step 1.1 — List Users API
 
-**Goal:** Display a table of all Contact Center users with basic info.
+1. Navigate to the [List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users).
+2. Copy the endpoint and paste it into the lab.
 
-1. Open the [List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users)
-2. Copy the **endpoint path** from the Try It bar
-3. Run Try It to confirm the response returns your user list
-
-**Fill in:**
-
-| Variable | Hint |
-|----------|------|
-| `USERS_LIST_ENDPOINT` | List path (e.g. `…/v2/user`) |
+**Fill in:** Users List endpoint
 
 **Dashboard unlocks:** Users table with name columns
 
 ---
 
-## Step 1.2 — Name and Email Fields
+## Step 1.2 — Name & Email Fields
 
-**Goal:** Add email addresses to the user table.
+1. From the [List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users), hit the Run button at the bottom of the page.
+2. From the response, locate the details for one user, then copy and paste the first name, last name, and email response keys into the lab.
 
-1. Open the [List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users)
-2. Expand a user object in the Try It response
-3. Copy the JSON keys for first name, last name, and email
-
-**Fill in:**
-
-| Variable | Hint |
-|----------|------|
-| `USER_FIRST_NAME_KEY` | Given name field |
-| `USER_LAST_NAME_KEY` | Family name field |
-| `USER_EMAIL_KEY` | Email field |
+**Fill in:** First Name, Last Name, Email
 
 **Dashboard unlocks:** Email column in the users table
 
@@ -48,87 +32,82 @@ Each step uses **list-all** APIs (paste the path exactly as shown in the Develop
 
 ## Step 1.3 — Profile Information
 
-**Goal:** Show profile IDs on each user and resolve agent, user, and multimedia profile names from list APIs.
+### Part A — Profile IDs (List Users)
 
-1. Open the [List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users) and copy the three profile ID fields from a user object
-2. Open the [List Desktop Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/desktop-profile/list-desktop-profiles) and copy the list path and name field
-3. Open the [List User Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/user-profiles/list-user-profiles) and copy the list path and name field
-4. Open the [List Multimedia Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/multimedia-profile/list-multimedia-profiles) and copy the list path and name field
+1. From the same List Users response generated in the previous step, locate the keys for the agent, multimedia, and user profile IDs.
+2. Copy and paste those keys into the lab.
 
-**Fill in:**
+**Fill in:** Agent Profile Id, Multimedia Profile Id, User Profile Id
 
-| Variable | Hint |
-|----------|------|
-| `AGENT_PROFILE_ID_KEY` | Agent profile UUID on user (List Users) |
-| `MULTIMEDIA_PROFILE_ID_KEY` | Multimedia profile UUID on user |
-| `USER_PROFILE_ID_KEY` | User profile UUID on user |
-| `AGENT_PROFILE_LIST_ENDPOINT` | List Desktop Profiles path |
-| `AGENT_PROFILE_NAME_KEY` | Name field on desktop profile objects |
-| `USER_PROFILE_LIST_ENDPOINT` | List User Profiles path |
-| `USER_PROFILE_NAME_KEY` | Name field on user profile objects |
-| `MULTIMEDIA_PROFILE_LIST_ENDPOINT` | List Multimedia Profiles path |
-| `MULTIMEDIA_PROFILE_NAME_KEY` | Name field on multimedia profile objects |
+### Part B — List Desktop Profiles
+
+1. Navigate to the [List Desktop Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/desktop-profile/list-desktop-profiles).
+2. Copy the endpoint and paste it into the lab.
+3. Hit the Run button at the bottom of the API page, then from the response copy the name key and paste it into the lab.
+
+**Fill in:** Agent Profile List endpoint, Name
+
+### Part C — List User Profiles
+
+1. Navigate to the [List User Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/user-profiles/list-user-profiles).
+2. Copy the endpoint and paste it into the lab.
+3. Hit the Run button at the bottom of the API page, then from the response copy the name key and paste it into the lab.
+
+**Fill in:** User Profile List endpoint, Name
+
+### Part D — List Multimedia Profiles
+
+1. Navigate to the [List Multimedia Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/multimedia-profile/list-multimedia-profiles).
+2. Copy the endpoint and paste it into the lab.
+3. Hit the Run button at the bottom of the API page, then from the response copy the name key and paste it into the lab.
+
+**Fill in:** Multimedia Profile List endpoint, Name
 
 **Dashboard unlocks:** Agent, multimedia, and user profile name columns
 
 ---
 
-## Step 1.4 — Skill Information
+## Step 1.4 — Contact Channel Types
 
-**Goal:** Associate skill profiles with users.
+1. From the same List Multimedia Profiles response generated in the previous step, copy and paste the keys for telephony, chat, email, and social into the lab.
 
-1. Open the [List Skill Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/skill-profile/list-skill-profiles)
-2. Copy the list path, the profile `id` field, and the skill name field
+**Fill in:** Telephony, Chat, Email, Social
 
-**Fill in:**
+**Dashboard unlocks:** Channel Types column
 
-| Variable | Hint |
-|----------|------|
-| `SKILL_PROFILE_LIST_ENDPOINT` | List path (e.g. `…/v2/skill-profile`) |
-| `SKILL_PROFILE_ID_KEY` | ID property on each skill profile object |
-| `SKILL_NAME_KEY` | Name field on skill profile objects |
+---
+
+## Step 1.5 — Skill Information
+
+1. Navigate to the [List Skill Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/skill-profile/list-skill-profiles).
+2. Copy the endpoint and paste it into the lab.
+3. Hit the Run button at the bottom of the API page, then from the response copy and paste both id and name keys into the lab.
+
+**Fill in:** Skill Profile List endpoint, Id, Name
 
 **Dashboard unlocks:** Skill Profile column in the users table
 
 ---
 
-## Step 1.5 — Team Information
+## Step 1.6 — Team Information
 
-**Goal:** Show team membership for each user.
+List Users does not include team IDs. Join membership from each team's array of user IDs.
 
-1. Open the [List Teams API](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-teams)
-2. Copy the v2 list path and team name field
-3. Open the [List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users) and copy the team IDs array on each user
+### Part A — List Teams
 
-**Fill in:**
+1. Navigate to the [List Teams API](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-teams).
+2. Copy the endpoint and paste it into the lab.
+3. Hit the Run button at the bottom of the API page, then from the response copy and paste the name key into the lab.
 
-| Variable | Hint |
-|----------|------|
-| `TEAM_LIST_ENDPOINT` | List path (e.g. `…/v2/team`) |
-| `TEAM_IDS_KEY` | Team ID array on user |
-| `TEAM_NAME_KEY` | Team name on team objects (e.g. `name`) |
+**Fill in:** Team List endpoint, Name
+
+### Part B — User IDs
+
+1. From the same List Teams response generated in the previous step, locate the key that holds an array of user IDs, then copy and paste that key into the lab.
+
+**Fill in:** User IDs
 
 **Dashboard unlocks:** Teams column in the users table
-
----
-
-## Step 1.6 — Contact Channel Types
-
-**Goal:** Show which contact channel types each user can handle.
-
-1. Open the [List Multimedia Profiles API](https://developer.webex.com/webex-contact-center/docs/api/v1/multimedia-profile/list-multimedia-profiles) (you already copied the list path in step 1.3)
-2. Copy the channel capacity fields
-
-**Fill in:**
-
-| Variable | Hint |
-|----------|------|
-| `CHANNEL_TELEPHONY_KEY` | Telephony capacity field |
-| `CHANNEL_CHAT_KEY` | Chat capacity field |
-| `CHANNEL_EMAIL_KEY` | Email capacity field |
-| `CHANNEL_SOCIAL_KEY` | Social capacity field |
-
-**Dashboard unlocks:** Channel Types column (e.g. `telephony, chat, email`)
 
 ---
 
@@ -137,6 +116,6 @@ Each step uses **list-all** APIs (paste the path exactly as shown in the Develop
 - [List Users](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users)
 - [List Desktop Profiles](https://developer.webex.com/webex-contact-center/docs/api/v1/desktop-profile/list-desktop-profiles)
 - [List User Profiles](https://developer.webex.com/webex-contact-center/docs/api/v1/user-profiles/list-user-profiles)
+- [List Multimedia Profiles](https://developer.webex.com/webex-contact-center/docs/api/v1/multimedia-profile/list-multimedia-profiles)
 - [List Skill Profiles](https://developer.webex.com/webex-contact-center/docs/api/v1/skill-profile/list-skill-profiles)
 - [List Teams](https://developer.webex.com/webex-contact-center/docs/api/v1/team/list-teams)
-- [List Multimedia Profiles](https://developer.webex.com/webex-contact-center/docs/api/v1/multimedia-profile/list-multimedia-profiles)

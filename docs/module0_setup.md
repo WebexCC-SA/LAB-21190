@@ -14,46 +14,58 @@ Credentials are saved locally in `data/lab_credentials.json` (gitignored). The l
 
 Choose **Admin token** or **Integration (advanced)**. Either option completes this step.
 
-### Option A — Admin token
+### Admin token
 
 1. Go to [developer.webex.com](https://developer.webex.com) and sign in with your Webex Contact Center admin account.
-2. Click your **profile** (avatar or name) in the top-right corner.
-3. Copy the **bearer token** from your profile.
-4. Paste it into the dashboard (token string only — do not include `Bearer`).
+2. Click your profile (avatar or name) in the top-right corner.
+3. Copy the bearer token shown in your profile.
+4. Paste the token string only — do not include the word Bearer.
 
-### Option B — Webex Integration (advanced)
+**Fill in:** Admin bearer token
 
-Use this when you want an OAuth integration instead of a personal profile token.
+### Integration (advanced)
 
-1. Create an integration at [My Webex Apps](https://developer.webex.com/my-apps/new).
-2. Set the **Redirect URI** to the callback URL shown in Setup (for this lab this is `http://127.0.0.1:5000/setup/callback`). It must match exactly — `127.0.0.1` and `localhost` are different.
-3. Add these scopes (check each one — `spark:kms` is not in the list; Webex adds it automatically):
+1. Go to [developer.webex.com/my-apps/new](https://developer.webex.com/my-apps/new) and login as a local admin.
+2. Under Integrations, click Create an Integration.
+3. Fill out the required fields: Integration Name, Icon, and App Hub Description.
+4. Fill in Redirect URI with the one provided below: `http://127.0.0.1:5000/setup/callback`.
+5. Add the proper scopes: for each scope chip, click to copy the name, then find and check it off in your integration.
+6. Once scopes are added, click Add Integration at the bottom of the page.
+7. Your integration will be created and you will now see your client information.
+8. Copy the Client ID from your integration, and paste it into the Client ID field in the lab.
+9. Copy the Client Secret from your integration, and paste it into the Client Secret field in the lab. The lab does not store the secret.
+10. Under OAuth Settings, copy the full OAuth Authorization URL in the black box, and paste it into the OAuth Authorization URL field in the lab.
+11. Click the Authorize in Webex button, then login with the admin user who created the integration.
+12. Hit the Accept button to authorize the integration.
+13. On the pop-up window, click the Copy code button, and paste this into the Authorization code field in the lab.
+14. You can close the pop-up window, then click Generate Token.
 
-   - `cjp:config` — Contact Center configuration APIs
-   - `cjp:config_read` — Read users, queues, teams, and other org data
-   - `cjp:config_write` — Update global variables (Module 2)
-   - `spark:people_read` — Identify the authorizing admin and organization
-   - `spark-admin:people_read` — List Control Hub people (Module 4)
-   - `spark-admin:roles_read` — Resolve role names (Module 4)
-   - `spark-admin:licenses_read` — Resolve license names (Module 4)
-   - `spark-admin:telephony_config_read` — Locations and phone numbers (Module 4)
-   - `spark-admin:telephony_pstn_read` — PSTN connection per location (Module 4 step 4.3)
+The Redirect URI must match exactly — `127.0.0.1` and `localhost` are different.
 
-4. On the integration page, copy the **OAuth Authorization URL** (it already includes the scopes you checked, plus `spark:kms`). Paste it into the lab. Client ID fills in from that URL.
-5. Click **Authorize in Webex** and sign in as a Contact Center **admin**. Do not generate a token yet.
-6. After you approve, the lab callback page shows a one-time **authorization code**.
-7. Paste **Client Secret** and the **authorization code**, then click **Generate token**.
+**Fill in:** Client ID, Client Secret, OAuth Authorization URL, Authorization code
 
-Order matters: authorize (admin login) first, then generate the token.
+Required scopes (click each chip in the lab to copy it):
 
-The lab calls `POST https://webexapis.com/v1/access_token` and stores only the resulting access token. The token response includes the scopes that were actually granted; if any required scope is missing, Setup does **not** complete step 0.1. Edit the integration, check the highlighted chips, copy the new **OAuth Authorization URL**, authorize again, and generate a new token (the previous code cannot be reused).
+- `cjp:config` — Contact Center configuration APIs
+- `cjp:config_read` — Read users, queues, teams, and other org data
+- `cjp:config_write` — Update global variables (Module 2)
+- `spark:people_read` — Identify the authorizing admin and organization
+- `spark-admin:people_read` — List Control Hub people (Module 4)
+- `spark-admin:roles_read` — Resolve role names (Module 4)
+- `spark-admin:licenses_read` — Resolve license names (Module 4)
+- `spark-admin:telephony_config_read` — Locations and phone numbers (Module 4)
+- `spark-admin:telephony_pstn_read` — PSTN connection per location (Module 4 step 4.3)
+
+The lab stores only the resulting access token. If a required scope is missing, step 0.1 does not complete. Edit the integration, check the highlighted chips, copy the new OAuth Authorization URL, authorize again, and generate a new token (the previous code cannot be reused).
 
 ## Step 0.2 — Organization ID
 
-1. From the Developer Portal profile menu, copy your **organization ID** (Setup may pre-fill it from the token).
-2. Paste it into the dashboard and click **Check & save step**.
+1. In the [developer portal](https://developer.webex.com), click your profile (avatar or name) in the top-right corner, then copy your organization ID.
+2. The org ID must belong to the same organization as the token from step 0.1 (admin profile or integration).
+3. When you save this step, the lab calls the [WxCC List Users API](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users) to confirm your bearer token is valid.
+4. Once this step is complete, you can close your developer portal integration page.
 
-The lab verifies the token and org ID by calling the WxCC List Users API.
+**Fill in:** Organization ID
 
 !!! note "Reset Setup to start over"
     Use **Reset module** on the Setup tab if you need to start over or connect a **different organization**. This clears the saved token and org ID so you can enter new credentials.
@@ -62,11 +74,10 @@ The lab verifies the token and org ID by calling the WxCC List Users API.
 
 The **Connected** card includes an **i** button that explains whether you used an admin profile token or a Webex Integration.
 
-When both steps are complete, Modules 1–4 unlock and live API data loads as you progress.
+When both steps are complete, Modules 1–4 unlock and live API data loads as you progress. Use **Continue to Users** or the Users tab to move on.
 
 ## Developer Portal Reference
 
-- [Webex Developer Portal](https://developer.webex.com)
-- [My Webex Apps](https://developer.webex.com/my-apps)
-- [Create a New App](https://developer.webex.com/my-apps/new)
-- [List Users](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users) (connectivity check)
+- [Developer portal](https://developer.webex.com)
+- [Create a Webex Integration](https://developer.webex.com/my-apps/new)
+- [List Users](https://developer.webex.com/webex-contact-center/docs/api/v1/users/list-users)
