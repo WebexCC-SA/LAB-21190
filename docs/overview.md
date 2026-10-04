@@ -32,7 +32,7 @@ By the end of this lab you will be able to:
 ## How It Works
 
 1. Complete **Setup** — paste an admin profile token **or** create a Webex Integration, then save your organization ID.
-2. Open each lab module tab and complete the **step forms** — paste endpoint paths and JSON field names from the Developer Portal.
+2. Open each lab module tab and complete the **step forms** — paste endpoint paths and keys from the Developer Portal.
 3. Click **Save step** after each step. Answers are stored locally in `data/lab_answers.json` and survive page reloads.
 4. As steps are completed, the progress bar updates and new dashboard sections unlock with live API data.
 5. Use **Open Full Dashboard** to review completed sections on a separate page.
@@ -41,7 +41,7 @@ By the end of this lab you will be able to:
 
 1. Open the **API reference** link for the step.
 2. Copy the **endpoint path** (when shown) and paste it into the form.
-3. Copy the **JSON field names** from the API response and paste them into the response key fields.
+3. Copy the **keys** from the API response and paste them into the lab.
 4. Click **Save step**.
 
 ## Lab Modules

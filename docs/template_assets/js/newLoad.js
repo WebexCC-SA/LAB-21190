@@ -13,12 +13,37 @@ function loadem() {
 function openLinksInNewTab() {
     document.querySelectorAll(".md-content a[href]").forEach((anchor) => {
         const href = anchor.getAttribute("href") || ""
-        if (!href || href.startsWith("#") || href.startsWith("javascript:")) {
+        if (!shouldOpenInNewTab(href)) {
+            if (anchor.getAttribute("target") === "_blank") {
+                try {
+                    const url = new URL(href, window.location.href)
+                    if (url.origin === window.location.origin || href.startsWith("#")) {
+                        anchor.removeAttribute("target")
+                        if (anchor.getAttribute("rel") === "noopener noreferrer") {
+                            anchor.removeAttribute("rel")
+                        }
+                    }
+                } catch {
+                    return
+                }
+            }
             return
         }
         anchor.setAttribute("target", "_blank")
         anchor.setAttribute("rel", "noopener noreferrer")
     })
+}
+
+function shouldOpenInNewTab(href) {
+    if (!href || href.startsWith("#") || href.startsWith("javascript:") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+        return false
+    }
+    try {
+        const url = new URL(href, window.location.href)
+        return url.origin !== window.location.origin
+    } catch {
+        return false
+    }
 }
 
 loadem()
