@@ -2,7 +2,7 @@
 
 Web guide link: https://webexcc-sa.github.io/LAB-21190/
 
-Lab workspace (dashboard code): https://github.com/git-jzuke/wx1-lab21190
+Lab workspace (dashboard code): https://github.com/jzuke-wx1-2026/wx1-lab21190
 
 
 ## DOCX to Markdown script

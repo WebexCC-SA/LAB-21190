@@ -24,7 +24,7 @@ You have built a fully functional custom Webex Contact Center dashboard that int
 
 Take the same ideas into a **standalone dashboard** you can clone and customize for your own organization:
 
-[https://github.com/placeholder](https://github.com/placeholder)
+[https://github.com/jzuke-wx1-2026/wxcc-standalone-dashboard](https://github.com/jzuke-wx1-2026/wxcc-standalone-dashboard)
 
 That project uses some of the API patterns from this lab (list-and-join, GraphQL Search, Control Hub / Calling lookups) without the fill-in-the-blank lab wrappers. Download it, point it at your org, and modify the layout and queries to match your operations needs.
 

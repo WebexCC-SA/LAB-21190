@@ -1,6 +1,42 @@
 # Module 0 — Lab Setup
 
-Connect the dashboard to your Webex Contact Center organization. Complete step **0.1** with either an **admin profile token** or a **Webex Integration**, then save your **organization ID** in step **0.2**.
+## Quick Start
+
+Open **VS Code** and open a new terminal.
+
+Follow one of the paths based off your OS.
+
+### PC
+
+```powershell
+git clone https://github.com/jzuke-wx1-2026/wx1-lab21190.git
+cd wx1-lab21190
+
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+copy .env.example .env
+python app.py
+```
+
+### Mac
+
+```bash
+git clone https://github.com/jzuke-wx1-2026/wx1-lab21190.git
+cd wx1-lab21190
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python3 app.py
+```
+
+Open **http://127.0.0.1:5000** in any browser.
+
+Complete **Setup** first (admin profile token **or** Webex Integration, then organization ID), then Modules 1–4. Use **Open Full Dashboard** to review completed sections.
+
+Do not commit `.env` or anything in `data/`. Those files hold your token and answers.
 
 Credentials are saved locally in `data/lab_credentials.json` (gitignored). The lab never stores a client secret, authorization code, or refresh token.
 

@@ -37,8 +37,8 @@ extra:
   generator: false
   repo: "https://github.com/WebexCC-SA/LAB-21190.git"
   site_event: WebexOne 2026
-  lab_workspace: "https://github.com/git-jzuke/wx1-lab21190.git"
-  standalone_dashboard: "https://github.com/placeholder"
+  lab_workspace: "https://github.com/jzuke-wx1-2026/wx1-lab21190.git"
+  standalone_dashboard: "https://github.com/jzuke-wx1-2026/wxcc-standalone-dashboard"
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
@@ -88,7 +88,6 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
   - Home: index.md
-  - Welcome: welcome.md
   - Lab:
       - Overview: overview.md
       - Module 0 — Lab Setup: module0_setup.md

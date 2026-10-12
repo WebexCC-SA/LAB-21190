@@ -8,7 +8,7 @@
 
 In this hands-on lab you will connect a pre-built dashboard to Webex Contact Center and Webex Platform APIs. The code and layout are already in place — your job is to fill in endpoints and response field names using the **dashboard step forms**.
 
-The lab environment (code, virtual environment, and dashboard server) is **already set up**. Open **http://127.0.0.1:5000** if the dashboard is not already in the browser, then start with [Module 0 — Lab Setup](module0_setup.md).
+Clone and run the dashboard from [Module 0 — Lab Setup](module0_setup.md), then complete Setup (admin profile token **or** Webex Integration, then organization ID).
 
 ## Learning Objectives
 
