@@ -23,6 +23,8 @@ By the end of this lab you will be able to:
 
 ## Prerequisites
 
+- [Git](https://git-scm.com/)
+- [Python](https://www.python.org/)
 - A GitHub account
 - Visual Studio Code (VS Code)
 - A Webex Contact Center organization with admin access
