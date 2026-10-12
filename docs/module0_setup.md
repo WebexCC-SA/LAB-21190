@@ -4,6 +4,8 @@
 
 Open **VS Code** and open a new terminal.
 
+Create or open a folder you plan on storing this project.
+
 Follow one of the paths based off your OS.
 
 ### PC
