@@ -2,9 +2,9 @@
 
 ## Quick Start
 
-Open **VS Code** and open a new terminal.
+Open **VS Code** and create or open a folder you want to store this project.
 
-Create or open a folder you plan on storing this project.
+Open a new terminal.
 
 Follow one of the paths based off your OS.
 
